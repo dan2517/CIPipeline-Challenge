@@ -29,6 +29,22 @@ pipeline{
             }
         }
         }
+     stage('Deploy to artifactory'){
+        steps{
+        rtUpload(
+         serverId : 'Jfrog-Server',
+         spec :'''{
+           "files" :[
+           {
+           "pattern":"target/*.jar",
+           "target":"art-doc-devo-loc"
+           }
+           ]
+         }''',
+         
+      )
+      }
+     }
      
     }
     post {  
